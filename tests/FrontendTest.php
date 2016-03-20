@@ -58,6 +58,26 @@ class FrontendTest extends PHPUnit_Framework_TestCase {
       $this->webDriver->navigate()->refresh();
       $search = $this->webDriver->findElement(WebDriverBy::id('number'));
       $search->click();
+      $this->webDriver->getKeyboard()->sendKeys('+467-811 111');
+      $this->webDriver->getKeyboard()->pressKey(WebDriverKeys::ENTER);
+      $this->waitForAjax();
+      $result = $this->webDriver->findElement(WebDriverBy::id('result'));
+      $text = $result->getText();
+      $this->assertContains("Best operator is A", $text);
+
+      $this->webDriver->navigate()->refresh();
+      $search = $this->webDriver->findElement(WebDriverBy::id('number'));
+      $search->click();
+      $this->webDriver->getKeyboard()->sendKeys('467+811 111');
+      $this->webDriver->getKeyboard()->pressKey(WebDriverKeys::ENTER);
+      $this->waitForAjax();
+      $result = $this->webDriver->findElement(WebDriverBy::id('result'));
+      $text = $result->getText();
+      $this->assertContains("Supply a number", $text);
+
+      $this->webDriver->navigate()->refresh();
+      $search = $this->webDriver->findElement(WebDriverBy::id('number'));
+      $search->click();
       $this->webDriver->getKeyboard()->sendKeys('foobar');
       $this->webDriver->getKeyboard()->pressKey(WebDriverKeys::ENTER);
       $this->waitForAjax();
