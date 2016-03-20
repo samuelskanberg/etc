@@ -20,18 +20,15 @@ class OperatorTest extends PHPUnit_Framework_TestCase {
       46732 => 1.1,
     );
 
+    for ($i = 50000; $i < 59999; $i++) {
+      $pricelist[$i] = 6.0;
+    }
+
     $this->operator = new Operator('A', $pricelist);
   }
 
   public function testGetName() {
     $this->assertEquals('A', $this->operator->getName());
-  }
-
-  public function testStartsWith() {
-    $this->assertTrue(Operator::startsWith('a', 'a'));
-    $this->assertTrue(Operator::startsWith('abc', 'a'));
-    $this->assertTrue(Operator::startsWith('abc', ''));
-    $this->assertFalse(Operator::startsWith('abc', 'b'));
   }
 
   public function testGetRateForNumber() {
@@ -48,6 +45,15 @@ class OperatorTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals(0.15, $rateResult['rate']);
 
     $rateResult = $this->operator->getRateForNumber('22222222');
+    $this->assertEquals(null, $rateResult['rate']);
+
+    $rateResult = $this->operator->getRateForNumber('333');
+    $this->assertEquals(null, $rateResult['rate']);
+
+    $rateResult = $this->operator->getRateForNumber('dsa');
+    $this->assertEquals(null, $rateResult['rate']);
+
+    $rateResult = $this->operator->getRateForNumber('-46');
     $this->assertEquals(null, $rateResult['rate']);
   }
 }
