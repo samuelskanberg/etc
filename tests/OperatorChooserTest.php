@@ -2,6 +2,9 @@
 
 require_once __DIR__ . '/../src/OperatorChooser.php';
 
+/**
+ * @group backend
+ */
 class OperatorChooserTest extends PHPUnit_Framework_TestCase {
   protected $operatorChooser;
 

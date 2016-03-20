@@ -2,6 +2,9 @@
 
 require_once __DIR__ . '/../src/Operator.php';
 
+/**
+ * @group backend
+ */
 class OperatorTest extends PHPUnit_Framework_TestCase {
   protected $operator;
 

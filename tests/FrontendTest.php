@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * @group frontend
+ */
 class FrontendTest extends PHPUnit_Framework_TestCase {
 
   use WebDriverAssertions;
