@@ -19,6 +19,14 @@ tests
 java -jar selenium-server-standalone-2.53.0.jar
 ```
 
+You need curl support in your php to be able to run frontend test. In ubuntu:
+
+```
+sudo apt-get install php5-curl
+sudo service apache2 restart
+```
+
+
 Run all test:
 
 ```
